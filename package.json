@@ -1,0 +1,23 @@
+{
+  "name": "changelog-gen",
+  "version": "1.0.0",
+  "description": "Git log semantic commit parser and Keep-a-Changelog curator CLI.",
+  "bin": {
+    "changelog-gen": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "node test/run.js"
+  },
+  "keywords": [
+    "changelog",
+    "git",
+    "release",
+    "conventional-commits",
+    "keep-a-changelog"
+  ],
+  "author": "Dhani078 <dhanisepeda@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
