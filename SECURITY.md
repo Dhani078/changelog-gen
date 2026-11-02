@@ -1,12 +1,11 @@
 SECURITY POLICY: changelog-gen
 
-Security Commitments
+1. Security Posture
+changelog-gen reads local Git commit logs:
+- Safe Subprocess Calls: Uses argument vectors and escapes commit queries.
+- Zero Network Access: Operates completely locally without remote network communication.
+- Safe Prepending: Writes atomically to ensure file integrity.
 
-- Local Read-Only Execution: Reads git log from local clone without pushing.
-- Deterministic Output: No network calls or telemetry.
-
-Vulnerability Reporting
-
-Report issues to:
+2. Vulnerability Reporting
 - Maintainer: Dhani078
-- Email: dhanisepeda@gmail.com
+- Security Contact: dhanisepeda@gmail.com

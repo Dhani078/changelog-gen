@@ -1,22 +1,23 @@
 SPECIFICATION: changelog-gen
 
-1. Scope and Objective
+1. Scope and Technical Purpose
+changelog-gen queries local git commit history via git log, tokenizes commit messages per Conventional Commits v1.0.0 specification, groups them into classified sections, and formats markdown release blocks.
 
-changelog-gen reads Git commit log records between two revisions, maps messages conforming to the Conventional Commits specification into structured categories, and formats the output adhering to Keep a Changelog conventions.
+2. Conventional Commit Classification Mapping
+- feat: Features and functional additions.
+- fix: Bug fixes and defect corrections.
+- perf: Performance improvements and latency reductions.
+- docs: Documentation additions and corrections.
+- refactor: Code refactoring without behavior modification.
+- test: Testing harness and test case updates.
+- chore: Maintenance, build, and tooling updates.
 
-2. Commit Classification Matrix
+3. Breaking Change Parsing Rules
+A commit is classified as a breaking change if:
+- Commit type is followed by an exclamation mark: feat!: or fix!:
+- Commit body contains a line starting with: BREAKING CHANGE:
 
-- `feat`: Added / Features
-- `fix`: Fixed / Bug Fixes
-- `perf`: Performance Improvements
-- `refactor`: Refactoring / Code Quality
-- `docs`: Documentation Updates
-- `BREAKING CHANGE`: Breaking Changes (elevated to top priority section)
-- `chore`, `test`, `ci`: Filtered out by default unless `--all` is set
-
-3. Exit Codes
-
-- 0: Successful changelog generation.
-- 1: No commits found between specified revisions.
-- 2: Target is not a Git repository.
-- 3: File write failure.
+4. Exit Codes
+- 0: Changelog generated and written successfully.
+- 1: Git log empty or no commits found since target ref.
+- 2: Not a Git repository or unreadable working directory.

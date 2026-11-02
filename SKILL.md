@@ -1,31 +1,38 @@
 ---
 name: changelog-gen
-description: Conventional commit log parser and Keep-a-Changelog curator. Use when preparing releases, generating CHANGELOG.md updates, drafting GitHub Release bodies, or reviewing commit history between Git tags.
+description: Conventional commit changelog generator CLI and agent skill. Parses Git history, classifies commit types, and compiles publication-ready CHANGELOG.md releases.
+risk: safe
 version: 1.0.0
-author: Dhani078
 ---
 
-Changelog Gen Skill
+NAME
+changelog-gen - Conventional commit changelog generator
 
-Use when cutting releases, publishing packages, or auditing recent commit history for release notes.
+SYNOPSIS
+npx changelog-gen [options]
 
-Instructions
+COMMANDS
+- generate: Parse git log and prepend release notes to CHANGELOG.md.
+- --stdout: Output generated release notes to terminal.
 
-1. Inspect unreleased commits:
-   ```bash
-   npx changelog-gen --dry-run
-   ```
+OPTIONS
+- --version <v>: Explicit release version string.
+- --since <tag>: Starting commit or tag reference.
+- --output <path>: Target file path.
+- --json: Output parsed commit dictionary as JSON.
 
-2. Review categorized sections:
-   - Features (feat)
-   - Bug Fixes (fix)
-   - Performance (perf)
-   - Breaking Changes (breaking change indicator)
+DETERMINISTIC BEHAVIOR AND INVARIANTS
+1. Existing entries in CHANGELOG.md must be preserved below the new release section.
+2. Commits matching conventional types (feat, fix, perf) must be sorted into dedicated sections.
+3. Breaking changes must be flagged and placed at the top of the release notes.
+4. Execution must complete in under 50 milliseconds.
 
-3. Write release notes:
-   ```bash
-   npx changelog-gen --tag <version>
-   ```
+AGENT INTEGRATION INSTRUCTIONS
+When cutting a new release or preparing GitHub release notes:
+1. Run npx changelog-gen --stdout --version <v> to preview release notes.
+2. Review categorization.
+3. Execute npx changelog-gen --version <v> to update CHANGELOG.md.
+4. Commit CHANGELOG.md and create release tag.
 
-4. Verify formatting:
-   Ensure CHANGELOG.md uses plain headings, hyphen bullet items, and no markdown hash headers.
+AUTHOR
+Dhani078 (dhanisepeda@gmail.com)
